@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Happy Birthday Swetha ❤️</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial;
+background:linear-gradient(120deg,#ff758c,#ff7eb3);
+text-align:center;
+color:white;
+overflow:hidden;
+}
+
+.container{
+padding-top:120px;
+}
+
+h1{
+font-size:60px;
+}
+
+p{
+font-size:22px;
+max-width:700px;
+margin:auto;
+line-height:1.6;
+}
+
+button{
+padding:15px 30px;
+font-size:18px;
+border:none;
+border-radius:30px;
+background:white;
+color:#ff4b6e;
+cursor:pointer;
+margin-top:30px;
+}
+
+#surprise{
+display:none;
+font-size:26px;
+margin-top:30px;
+}
+
+.heart{
+position:fixed;
+bottom:-20px;
+font-size:20px;
+animation:float 6s linear infinite;
+color:white;
+}
+
+@keyframes float{
+0%{transform:translateY(0);}
+100%{transform:translateY(-100vh);}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Happy Birthday Swetha 🎂</h1>
+
+<p>
+Dear Swetha ❤️ <br><br>
+You are the most beautiful part of my life.
+Your smile makes my world brighter every day.
+</p>
+
+<p>
+I feel lucky to have you in my life.
+With love forever,<br>
+<b>Pavan Eswar</b>
+</p>
+
+<button onclick="showSurprise()">Click for Surprise 🎁</button>
+
+<div id="surprise">
+You are my today, my tomorrow, and my forever ❤️
+</div>
+
+</div>
+
+<script>
+function showSurprise(){
+document.getElementById("surprise").style.display="block";
+}
+
+function createHeart(){
+const heart=document.createElement("div");
+heart.classList.add("heart");
+heart.innerHTML="❤️";
+heart.style.left=Math.random()*100+"vw";
+heart.style.fontSize=(10+Math.random()*20)+"px";
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+heart.remove();
+},6000);
+}
+
+setInterval(createHeart,300);
+</script>
+
+</body>
+</html>
