@@ -14,11 +14,11 @@ overflow:hidden;
 }
 
 .container{
-padding-top:120px;
+padding-top:80px;
 }
 
 h1{
-font-size:60px;
+font-size:55px;
 }
 
 p{
@@ -36,13 +36,21 @@ border-radius:30px;
 background:white;
 color:#ff4b6e;
 cursor:pointer;
-margin-top:30px;
+margin-top:20px;
 }
 
 #surprise{
 display:none;
 font-size:26px;
-margin-top:30px;
+margin-top:20px;
+}
+
+img{
+width:250px;
+height:300px;
+object-fit:cover;
+border-radius:20px;
+margin-top:20px;
 }
 
 .heart{
@@ -66,31 +74,46 @@ color:white;
 
 <h1>Happy Birthday Swetha 🎂</h1>
 
+<img id="photo" src="https://i.imgur.com/yourphoto1.jpg">
+
 <p>
 Dear Swetha ❤️ <br><br>
-You are the most beautiful part of my life.
-Your smile makes my world brighter every day.
+
+You are the best thing that ever happened to me.
+Your smile is my happiness, your love is my strength.
+
+I promise to always stand by you, care for you,
+and make every moment special.
+
 </p>
 
 <p>
-I feel lucky to have you in my life.
-With love forever,<br>
+Forever yours,<br>
 <b>Pavan Eswar</b>
 </p>
 
 <button onclick="showSurprise()">Click for Surprise 🎁</button>
 
 <div id="surprise">
+I love you more than words can express ❤️
 You are my today, my tomorrow, and my forever ❤️
 </div>
 
 </div>
 
+<!-- MUSIC -->
+<audio autoplay loop>
+<source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mp3">
+</audio>
+
 <script>
+
+// Surprise
 function showSurprise(){
 document.getElementById("surprise").style.display="block";
 }
 
+// Floating hearts
 function createHeart(){
 const heart=document.createElement("div");
 heart.classList.add("heart");
@@ -103,8 +126,22 @@ setTimeout(()=>{
 heart.remove();
 },6000);
 }
-
 setInterval(createHeart,300);
+
+// Photo slideshow
+let photos=[
+"https://lh3.googleusercontent.com/pw/AP1GczMaEivwsjN1Z1APIVZVqyRoTYAGMmEP-eV7mQICGMq9z8m-E9cOnD1J2QXcgeYKsmzkHy5HHcgWcgKHAj8ASKNOjd2dHDDs40KLjWj1OjJ6RZJ5kDXT=w2400",
+"https://lh3.googleusercontent.com/pw/AP1GczPlivBm8UoFUHLL4m5hZRfM29xEWPJ9rOUgp3Czc5yYgRVT1ZTUS2EcFFKWIBi7ZsY0_OUo1Ys6DIjuTRvVVCHemL7HMIupLuLYSlYmfLSVw2JEfv8Q=w2400",
+"https://lh3.googleusercontent.com/pw/AP1GczMY_E2BmHi4RVLPvuWWvv2yQuUC0-zmgAI91ekn7tphIfJzKdXT2PXfkCVneO2FRJ_1O9j6ukPg2p43QiqliInKGhZEUfl-p6xp4f9v4AEvdgqnncWv=w2400",
+"https://lh3.googleusercontent.com/pw/AP1GczN3LsfIQ7ucJvAxrFbwCq-w5PSDLYvAZVig6pc9lwhN4rIdRTdZhMkrSG_8NeJgGNmLv55n7r7KdKzUbg_GWbjNVJQgLo0DjgR4mxOTDF6kSHFxg1Ch=w2400"
+];
+
+let i=0;
+setInterval(()=>{
+i=(i+1)%photos.length;
+document.getElementById("photo").src=photos[i];
+},2000);
+
 </script>
 
 </body>
