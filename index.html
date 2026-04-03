@@ -1,64 +1,77 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Happy Birthday Swetha ❤️</title>
+<title>For Swetha ❤️</title>
 
 <style>
 body{
 margin:0;
 font-family:Arial;
-background:linear-gradient(120deg,#ff758c,#ff7eb3);
-text-align:center;
+background:black;
 color:white;
+text-align:center;
 overflow:hidden;
 }
 
-.container{
-padding-top:80px;
+/* LOCK SCREEN */
+#lockScreen{
+position:fixed;
+width:100%;
+height:100%;
+background:black;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
 }
 
-h1{
-font-size:55px;
-}
-
-p{
-font-size:22px;
-max-width:700px;
-margin:auto;
-line-height:1.6;
+input{
+padding:12px;
+font-size:18px;
+border-radius:10px;
+border:none;
 }
 
 button{
-padding:15px 30px;
+padding:10px 20px;
+margin-top:10px;
 font-size:18px;
 border:none;
-border-radius:30px;
-background:white;
-color:#ff4b6e;
+border-radius:20px;
 cursor:pointer;
-margin-top:20px;
 }
 
-#surprise{
+/* MAIN CONTENT */
+#mainContent{
 display:none;
-font-size:26px;
-margin-top:20px;
+background:linear-gradient(120deg,#ff758c,#ff7eb3);
+height:100vh;
+padding-top:60px;
+}
+
+h1{
+font-size:50px;
 }
 
 img{
-width:250px;
-height:300px;
-object-fit:cover;
+width:260px;
+height:320px;
 border-radius:20px;
+object-fit:cover;
 margin-top:20px;
 }
 
+#countdown{
+font-size:28px;
+margin-top:20px;
+}
+
+/* HEARTS */
 .heart{
 position:fixed;
 bottom:-20px;
 font-size:20px;
 animation:float 6s linear infinite;
-color:white;
 }
 
 @keyframes float{
@@ -66,18 +79,40 @@ color:white;
 100%{transform:translateY(-100vh);}
 }
 </style>
+
 </head>
 
 <body>
 
-<div class="container">
+<!-- LOCK SCREEN -->
+<div id="lockScreen">
+
+<h2>Enter Password ❤️</h2>
+
+<input type="password" id="pass" placeholder="Enter secret">
+
+<button onclick="unlock()">Unlock</button>
+
+<p id="wrong" style="color:red;"></p>
+
+<div id="countdown"></div>
+
+</div>
+
+<!-- MAIN CONTENT -->
+<div id="mainContent">
 
 <h1>Happy Birthday Swetha 🎂</h1>
 
-<img id="photo" src="https://i.imgur.com/yourphoto1.jpg">
+<img id="photo" src="https://i.postimg.cc/yourphoto1.jpg">
 
 <p>
 Dear Swetha ❤️ <br><br>
+
+You are my happiness, my peace, my everything.  
+I’m so lucky to have you in my life.  
+
+I promise to love you more every single day.  
 
 You are the best thing that ever happened to me.
 Your smile is my happiness, your love is my strength.
@@ -85,50 +120,97 @@ Your smile is my happiness, your love is my strength.
 I promise to always stand by you, care for you,
 and make every moment special.
 
-</p>
-
-<p>
-Forever yours,<br>
-<b>Jhujjulluuuuuuu...❤️</b>
-</p>
-
-<button onclick="showSurprise()">Click for Surprise 🎁</button>
-
-<div id="surprise">
 I love you more than words can express ❤️
 You are my today, my tomorrow, and my forever ❤️
-</div>
+</p>
+
+<p><b>Jhujjulluuuuuuu...❤️</b></p>
 
 </div>
 
 <!-- MUSIC -->
-<audio autoplay loop>
+<audio id="music" loop>
 <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mp3">
 </audio>
 
 <script>
 
-// Surprise
-function showSurprise(){
-document.getElementById("surprise").style.display="block";
+// 🔐 PASSWORD
+let correctPassword = "Chinnu26072025"; // change this
+
+function unlock(){
+let userPass = document.getElementById("pass").value;
+
+if(userPass === correctPassword){
+document.getElementById("lockScreen").style.display="none";
+document.getElementById("mainContent").style.display="block";
+
+document.getElementById("music").play();
+
+startHearts();
+heartExplosion();
+
+}else{
+document.getElementById("wrong").innerText="Wrong password 😢";
+}
 }
 
-// Floating hearts
-function createHeart(){
+// ⏳ COUNTDOWN
+let birthday = new Date("April 16, 2026 00:00:00").getTime();
+
+setInterval(function(){
+let now = new Date().getTime();
+let distance = birthday - now;
+
+let days = Math.floor(distance / (1000*60*60*24));
+let hours = Math.floor((distance % (1000*60*60*24))/(1000*60*60));
+let minutes = Math.floor((distance % (1000*60*60))/(1000*60));
+let seconds = Math.floor((distance % (1000*60))/1000);
+
+document.getElementById("countdown").innerHTML =
+"Unlocks in: " + days + "d " + hours + "h " + minutes + "m " + seconds + "s";
+
+},1000);
+
+// ❤️ FLOATING HEARTS
+function startHearts(){
+setInterval(()=>{
 const heart=document.createElement("div");
 heart.classList.add("heart");
 heart.innerHTML="❤️";
 heart.style.left=Math.random()*100+"vw";
-heart.style.fontSize=(10+Math.random()*20)+"px";
 document.body.appendChild(heart);
 
-setTimeout(()=>{
-heart.remove();
-},6000);
+setTimeout(()=>heart.remove(),6000);
+},300);
 }
-setInterval(createHeart,300);
 
-// Photo slideshow
+// 💥 HEART EXPLOSION
+function heartExplosion(){
+for(let i=0;i<30;i++){
+const heart=document.createElement("div");
+heart.innerHTML="💖";
+heart.style.position="fixed";
+heart.style.left="50%";
+heart.style.top="50%";
+heart.style.fontSize="20px";
+document.body.appendChild(heart);
+
+let x=(Math.random()-0.5)*300;
+let y=(Math.random()-0.5)*300;
+
+heart.animate([
+{transform:"translate(0,0)", opacity:1},
+{transform:`translate(${x}px,${y}px)`, opacity:0}
+],{
+duration:1000
+});
+
+setTimeout(()=>heart.remove(),1000);
+}
+}
+
+// 📸 PHOTO SLIDESHOW
 let photos=[
 "https://lh3.googleusercontent.com/pw/AP1GczMaEivwsjN1Z1APIVZVqyRoTYAGMmEP-eV7mQICGMq9z8m-E9cOnD1J2QXcgeYKsmzkHy5HHcgWcgKHAj8ASKNOjd2dHDDs40KLjWj1OjJ6RZJ5kDXT=w2400",
 "https://lh3.googleusercontent.com/pw/AP1GczPlivBm8UoFUHLL4m5hZRfM29xEWPJ9rOUgp3Czc5yYgRVT1ZTUS2EcFFKWIBi7ZsY0_OUo1Ys6DIjuTRvVVCHemL7HMIupLuLYSlYmfLSVw2JEfv8Q=w2400",
